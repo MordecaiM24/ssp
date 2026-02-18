@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mordecai for Student Senate President</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2344;
+    --gold: #e8b829;
+    --gold-light: #f2d06b;
+    --gold-pale: #f5e3a0;
+    --cream: #fdf8e8;
+    --navy-light: #2a3a6a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--navy);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--navy);
+  }
+
+  /* Sunrise background */
+  .sunrise {
+    position: absolute;
+    bottom: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140vw;
+    height: 80vh;
+    pointer-events: none;
+  }
+  .sunrise .sun-disc {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 300px;
+    border-radius: 600px 600px 0 0;
+    background: radial-gradient(ellipse at 50% 100%, var(--gold) 0%, var(--gold-light) 50%, transparent 80%);
+    opacity: 0.35;
+    animation: riseUp 2s ease-out forwards;
+  }
+  .sunrise .ray {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    height: 60vh;
+    background: linear-gradient(to top, var(--gold-pale), transparent);
+    opacity: 0;
+    transform-origin: bottom center;
+    animation: rayAppear 1.5s ease-out forwards;
+  }
+  .ray:nth-child(2) { transform: rotate(-50deg); animation-delay: 0.6s; }
+  .ray:nth-child(3) { transform: rotate(-35deg); animation-delay: 0.8s; }
+  .ray:nth-child(4) { transform: rotate(-20deg); animation-delay: 1.0s; }
+  .ray:nth-child(5) { transform: rotate(-7deg); animation-delay: 1.1s; }
+  .ray:nth-child(6) { transform: rotate(7deg); animation-delay: 1.1s; }
+  .ray:nth-child(7) { transform: rotate(20deg); animation-delay: 1.0s; }
+  .ray:nth-child(8) { transform: rotate(35deg); animation-delay: 0.8s; }
+  .ray:nth-child(9) { transform: rotate(50deg); animation-delay: 0.6s; }
+
+  @keyframes riseUp {
+    from { transform: translateX(-50%) translateY(60%); opacity: 0; }
+    to { transform: translateX(-50%) translateY(0); opacity: 0.35; }
+  }
+  @keyframes rayAppear {
+    from { opacity: 0; height: 0; }
+    to { opacity: 0.15; height: 60vh; }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .hero-name {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(5rem, 14vw, 12rem);
+    color: var(--gold);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    animation: nameSlide 1s ease-out forwards;
+    opacity: 0;
+  }
+  @keyframes nameSlide {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-subtitle {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: clamp(0.9rem, 2vw, 1.3rem);
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-top: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease-out 0.5s forwards;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .hero-subtitle .star {
+    display: inline-block;
+    color: var(--gold);
+    font-size: 0.7em;
+  }
+
+  .hero-slogan {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    color: var(--cream);
+    margin-top: 2rem;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeUp 0.8s ease-out 0.8s forwards;
+  }
+
+  .hero-vote {
+    margin-top: 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--gold);
+    color: var(--navy);
+    padding: 1rem 2.5rem;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    opacity: 0;
+    animation: fadeUp 0.8s ease-out 1.1s forwards;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .hero-vote:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(232, 184, 41, 0.3);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── GOLD BAND ─── */
+  .gold-band {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 5rem 2rem;
+    position: relative;
+  }
+  .gold-band::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--navy);
+  }
+  .band-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .band-quote {
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  .band-attribution {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    margin-top: 1.5rem;
+    opacity: 0.7;
+  }
+
+  /* ─── PLATFORM ─── */
+  .platform {
+    padding: 6rem 2rem;
+    background: var(--navy);
+  }
+  .platform-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  .platform-header h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    text-transform: uppercase;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+  .platform-header p {
+    color: var(--gold-pale);
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    opacity: 0.7;
+  }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .pillar {
+    border: 2px solid var(--gold);
+    padding: 2.5rem 2rem;
+    position: relative;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .pillar:hover {
+    background: rgba(232, 184, 41, 0.08);
+    transform: translateY(-4px);
+  }
+  .pillar-number {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 3rem;
+    color: var(--gold);
+    opacity: 0.3;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .pillar h3 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gold-light);
+    margin-bottom: 0.8rem;
+  }
+  .pillar p {
+    color: var(--cream);
+    opacity: 0.8;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  /* ─── RECORD ─── */
+  .record {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 5rem 2rem;
+  }
+  .record-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .record h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 5vw, 3rem);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    letter-spacing: 0.05em;
+  }
+  .record-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+  .record-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(26, 35, 68, 0.15);
+  }
+  .record-list li::before {
+    content: '✦';
+    color: var(--navy);
+    font-size: 0.7rem;
+    margin-top: 0.35rem;
+    flex-shrink: 0;
+  }
+
+  /* ─── CTA ─── */
+  .cta {
+    background: var(--navy);
+    padding: 6rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta::before {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 250px;
+    border-radius: 500px 500px 0 0;
+    background: radial-gradient(ellipse at 50% 100%, var(--gold) 0%, transparent 70%);
+    opacity: 0.1;
+  }
+  .cta h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(3rem, 8vw, 6rem);
+    text-transform: uppercase;
+    color: var(--gold);
+    position: relative;
+    z-index: 1;
+  }
+  .cta .vote-date {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: var(--cream);
+    margin-top: 1rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--navy);
+    border-top: 3px solid var(--gold);
+    padding: 2rem;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-pale);
+    opacity: 0.5;
+  }
+
+  /* ─── SCROLL REVEALS ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- STYLE SWITCHER -->
+<nav class="switcher">
+  <span class="switcher-label">Style:</span>
+  <a href="index.html" class="switcher-link active">Sign</a>
+  <a href="site-option-b-editorial.html" class="switcher-link">Editorial</a>
+  <a href="site-option-c-brutalist.html" class="switcher-link">Brutalist</a>
+</nav>
+<style>
+  .switcher {
+    position: fixed;
+    top: 1.2rem;
+    right: 1.5rem;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(26, 35, 68, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 0.5rem 1rem;
+    border-radius: 100px;
+    border: 1px solid rgba(232, 184, 41, 0.3);
+    font-family: 'Oswald', system-ui, sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .switcher-label {
+    color: rgba(255,255,255,0.4);
+    font-weight: 400;
+  }
+  .switcher-link {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    padding: 0.25rem 0.6rem;
+    border-radius: 100px;
+    transition: all 0.2s;
+  }
+  .switcher-link:hover { color: #fff; }
+  .switcher-link.active {
+    background: var(--gold, #e8b829);
+    color: var(--navy, #1a2344);
+    font-weight: 600;
+  }
+</style>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="sunrise">
+    <div class="sun-disc"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+  </div>
+  <div class="hero-content">
+    <h1 class="hero-name">Mordecai</h1>
+    <p class="hero-subtitle">
+      <span class="star">✦</span>
+      For Student Senate President
+      <span class="star">✦</span>
+    </p>
+    <p class="hero-slogan">Let's Begin</p>
+    <a href="#platform" class="hero-vote">Vote March 9 &amp; 10</a>
+  </div>
+</section>
+
+<!-- GOLD BAND -->
+<section class="gold-band">
+  <div class="band-inner reveal">
+    <p class="band-quote">"I'm not here to rebrand student government. I want to build a Senate that works after I leave it."</p>
+    <p class="band-attribution">— Mordecai Mengesteab</p>
+  </div>
+</section>
+
+<!-- PLATFORM -->
+<section class="platform" id="platform">
+  <div class="platform-header reveal">
+    <h2>The Platform</h2>
+    <p>Policy with students, not for them.</p>
+  </div>
+  <div class="pillars">
+    <div class="pillar reveal">
+      <div class="pillar-number">01</div>
+      <h3>Transparency</h3>
+      <p>A searchable public record of Senate actions and where your student fees go. No more black box governance.</p>
+    </div>
+    <div class="pillar reveal">
+      <div class="pillar-number">02</div>
+      <h3>Affordability</h3>
+      <p>Fighting for lower costs in tuition, housing, dining, and parking — the issues that hit your wallet every semester.</p>
+    </div>
+    <div class="pillar reveal">
+      <div class="pillar-number">03</div>
+      <h3>Student Voices</h3>
+      <p>A standing legislative roundtable with multicultural orgs, the Pride Center, graduate students, and Greek councils.</p>
+    </div>
+    <div class="pillar reveal">
+      <div class="pillar-number">04</div>
+      <h3>Follow-Through</h3>
+      <p>Bills pass and nothing happens. We need infrastructure that turns legislation into action.</p>
+    </div>
+    <div class="pillar reveal">
+      <div class="pillar-number">05</div>
+      <h3>Campus Safety</h3>
+      <p>Sexual assault prevention, survivor advocacy, and mental health — working with campus partners to protect every student.</p>
+    </div>
+    <div class="pillar reveal">
+      <div class="pillar-number">06</div>
+      <h3>Digital Senate</h3>
+      <p>Modernizing Senate's digital infrastructure — because student government should work like it's 2026.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RECORD -->
+<section class="record">
+  <div class="record-inner reveal">
+    <h2>The Record</h2>
+    <ul class="record-list">
+      <li>Two sessions as Senator</li>
+      <li>Chair, Strategic Mission Subcommittee</li>
+      <li>Served on DEI, GRO, Rules, and Recordkeeping</li>
+      <li>Sponsored the Keep the Promise Act</li>
+      <li>Senate Transparency &amp; Safety Act</li>
+      <li>Student Dining Board Establishment Act</li>
+      <li>Co-authored UNC system DEI &amp; institutional neutrality report</li>
+      <li>Mandated Senate recordings while protecting student privacy</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2 class="reveal">Let's Begin</h2>
+  <p class="vote-date reveal">Vote March 9 &amp; 10</p>
+</section>
+
+<footer>
+  Mordecai for Student Senate President &bull; 2026
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
