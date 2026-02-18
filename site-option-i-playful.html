@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mordecai for SSP!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fff8f0;
+    --coral: #ff6b6b;
+    --blue: #4ecdc4;
+    --yellow: #ffe66d;
+    --purple: #a78bfa;
+    --dark: #2d3436;
+    --orange: #fd9644;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* CONFETTI DOTS */
+  .dots {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .dot {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.12;
+  }
+  .dot:nth-child(1) { width: 200px; height: 200px; background: var(--coral); top: 5%; left: 80%; }
+  .dot:nth-child(2) { width: 150px; height: 150px; background: var(--blue); top: 30%; left: 5%; }
+  .dot:nth-child(3) { width: 180px; height: 180px; background: var(--yellow); top: 60%; right: 10%; }
+  .dot:nth-child(4) { width: 120px; height: 120px; background: var(--purple); bottom: 15%; left: 20%; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 3rem 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--dark);
+    padding: 0.5rem 1.5rem;
+    border-radius: 100px;
+    font-weight: 800;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    transform: rotate(-3deg);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards;
+  }
+
+  .hero-name {
+    font-family: 'Lilita One', sans-serif;
+    font-size: clamp(5rem, 15vw, 12rem);
+    line-height: 0.9;
+    text-transform: uppercase;
+    color: var(--dark);
+    opacity: 0;
+    animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards;
+  }
+  .hero-name .c1 { color: var(--coral); }
+  .hero-name .c2 { color: var(--blue); }
+  .hero-name .c3 { color: var(--purple); }
+
+  .hero-sub {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #888;
+    margin-top: 0.8rem;
+    opacity: 0;
+    animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s forwards;
+  }
+
+  .hero-slogan {
+    font-family: 'Lilita One', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-top: 2rem;
+    color: var(--coral);
+    transform: rotate(-2deg);
+    opacity: 0;
+    animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.8s forwards;
+  }
+
+  .hero-btn {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 1rem 2.5rem;
+    background: var(--coral);
+    color: white;
+    font-weight: 800;
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: 16px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 0 #e05555;
+    opacity: 0;
+    animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 1s forwards;
+  }
+  .hero-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 0 #e05555;
+  }
+  .hero-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 #e05555;
+  }
+
+  @keyframes bounceIn {
+    from { opacity: 0; transform: scale(0.7) translateY(30px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  /* WAVE DIVIDER */
+  .wave {
+    height: 60px;
+    background: var(--bg);
+    position: relative;
+  }
+  .wave svg {
+    position: absolute;
+    bottom: -1px;
+    width: 100%;
+  }
+
+  /* QUOTE */
+  .quote-section {
+    background: var(--blue);
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+  .quote-section blockquote {
+    font-family: 'Lilita One', sans-serif;
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.4;
+  }
+
+  /* PLATFORM */
+  .platform {
+    padding: 5rem 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  .platform h2 {
+    font-family: 'Lilita One', sans-serif;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--dark);
+  }
+
+  .plat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .plat-card {
+    padding: 2rem;
+    border-radius: 20px;
+    transition: transform 0.3s;
+    position: relative;
+  }
+  .plat-card:hover { transform: translateY(-6px) rotate(-1deg); }
+  .plat-card:nth-child(1) { background: rgba(255, 107, 107, 0.1); border: 2px solid rgba(255, 107, 107, 0.2); }
+  .plat-card:nth-child(2) { background: rgba(78, 205, 196, 0.1); border: 2px solid rgba(78, 205, 196, 0.2); }
+  .plat-card:nth-child(3) { background: rgba(167, 139, 250, 0.1); border: 2px solid rgba(167, 139, 250, 0.2); }
+  .plat-card:nth-child(4) { background: rgba(255, 230, 109, 0.15); border: 2px solid rgba(255, 230, 109, 0.3); }
+  .plat-card:nth-child(5) { background: rgba(253, 150, 68, 0.1); border: 2px solid rgba(253, 150, 68, 0.2); }
+  .plat-card:nth-child(6) { background: rgba(255, 107, 107, 0.1); border: 2px solid rgba(255, 107, 107, 0.2); }
+
+  .plat-card h3 {
+    font-family: 'Lilita One', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  .plat-card:nth-child(1) h3 { color: var(--coral); }
+  .plat-card:nth-child(2) h3 { color: var(--blue); }
+  .plat-card:nth-child(3) h3 { color: var(--purple); }
+  .plat-card:nth-child(4) h3 { color: var(--orange); }
+  .plat-card:nth-child(5) h3 { color: var(--orange); }
+  .plat-card:nth-child(6) h3 { color: var(--coral); }
+  .plat-card p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #666;
+    font-weight: 600;
+  }
+
+  /* RECORD */
+  .record {
+    background: var(--dark);
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+  .record h2 {
+    font-family: 'Lilita One', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--yellow);
+  }
+  .record-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .tag {
+    padding: 0.6rem 1.3rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--dark);
+  }
+  .tag:nth-child(odd) { background: var(--yellow); }
+  .tag:nth-child(even) { background: var(--blue); }
+
+  /* CTA */
+  .cta {
+    padding: 6rem 2rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .cta h2 {
+    font-family: 'Lilita One', sans-serif;
+    font-size: clamp(4rem, 12vw, 8rem);
+    color: var(--coral);
+    line-height: 0.95;
+    transform: rotate(-2deg);
+  }
+  .cta p {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: #888;
+    margin-top: 1rem;
+  }
+
+  footer {
+    padding: 2rem;
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: #bbb;
+  }
+
+  .reveal { opacity: 0; transform: translateY(25px); transition: opacity 0.6s, transform 0.6s; }
+  .reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+<div class="dots">
+  <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+</div>
+
+<section class="hero">
+  <span class="hero-badge">Spring 2026</span>
+  <h1 class="hero-name">M<span class="c1">O</span>RD<span class="c2">E</span>C<span class="c3">A</span>I</h1>
+  <p class="hero-sub">for Student Senate President</p>
+  <p class="hero-slogan">Let's Begin!</p>
+  <a href="#platform" class="hero-btn">Vote March 9 & 10</a>
+</section>
+
+<div class="wave">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,15 1440,30 L1440,60 L0,60 Z" fill="#4ecdc4"/></svg>
+</div>
+
+<section class="quote-section reveal">
+  <blockquote>"I'm not here to rebrand student government. I want to build a Senate that works after I leave it."</blockquote>
+</section>
+
+<section class="platform" id="platform">
+  <h2 class="reveal">The Platform</h2>
+  <div class="plat-grid">
+    <div class="plat-card reveal"><h3>Transparency</h3><p>Searchable records of Senate actions & student fees.</p></div>
+    <div class="plat-card reveal"><h3>Affordability</h3><p>Fighting tuition, housing, dining, and parking costs.</p></div>
+    <div class="plat-card reveal"><h3>Student Voices</h3><p>Roundtable with multicultural orgs, Pride Center, grad students.</p></div>
+    <div class="plat-card reveal"><h3>Follow-Through</h3><p>Turning passed bills into actual outcomes.</p></div>
+    <div class="plat-card reveal"><h3>Campus Safety</h3><p>Prevention, advocacy, and mental health for everyone.</p></div>
+    <div class="plat-card reveal"><h3>Digital Senate</h3><p>Modernizing SG for how students actually live.</p></div>
+  </div>
+</section>
+
+<section class="record reveal">
+  <h2>The Record</h2>
+  <div class="record-tags">
+    <span class="tag">2 Sessions as Senator</span>
+    <span class="tag">Chair, Strategic Mission</span>
+    <span class="tag">DEI Committee</span>
+    <span class="tag">GRO Committee</span>
+    <span class="tag">Keep the Promise Act</span>
+    <span class="tag">Transparency & Safety Act</span>
+    <span class="tag">Dining Board Act</span>
+    <span class="tag">UNC System DEI Report</span>
+  </div>
+</section>
+
+<section class="cta reveal">
+  <h2>Let's<br>Begin!</h2>
+  <p>March 9 & 10, 2026</p>
+</section>
+
+<footer>Mordecai for SSP 2026</footer>
+
+<script>
+  const o = new IntersectionObserver(e => e.forEach(x => x.isIntersecting && x.target.classList.add('visible')), {threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el => o.observe(el));
+</script>
+<script src="switcher.js"></script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mordecai Mengesteab — Student Senate President</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0c0c0c;
+    --charcoal: #1c1c1c;
+    --gold: #c5a55a;
+    --gold-dim: rgba(197, 165, 90, 0.12);
+    --gold-bright: #dfc07a;
+    --text: #a0a0a0;
+    --white: #eee;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--black);
+    color: var(--text);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* TOPBAR */
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 4rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 4rem;
+    position: relative;
+  }
+
+  .hero-ornament {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin-bottom: 3rem;
+    position: relative;
+    opacity: 0;
+    animation: luxIn 1s ease 0.3s forwards;
+  }
+  .hero-ornament::before, .hero-ornament::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border: 1px solid var(--gold);
+    transform: rotate(45deg);
+    top: -4px;
+  }
+  .hero-ornament::before { left: -12px; }
+  .hero-ornament::after { right: -12px; }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(4rem, 10vw, 9rem);
+    color: var(--white);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    line-height: 1;
+    opacity: 0;
+    animation: luxIn 1.2s ease 0.5s forwards;
+  }
+
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1.3rem;
+    color: var(--gold);
+    margin-top: 1rem;
+    letter-spacing: 0.1em;
+    opacity: 0;
+    animation: luxIn 1s ease 0.8s forwards;
+  }
+
+  .hero-divider {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    margin: 3rem auto;
+    opacity: 0;
+    animation: luxIn 1s ease 1s forwards;
+  }
+
+  .hero-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    line-height: 1.7;
+    max-width: 550px;
+    color: var(--text);
+    opacity: 0;
+    animation: luxIn 1s ease 1.2s forwards;
+  }
+
+  .hero-vote {
+    display: inline-block;
+    margin-top: 3rem;
+    padding: 0.9rem 3rem;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.4s;
+    opacity: 0;
+    animation: luxIn 1s ease 1.4s forwards;
+  }
+  .hero-vote:hover {
+    background: var(--gold);
+    color: var(--black);
+  }
+
+  @keyframes luxIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* GOLD LINE */
+  .gold-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.3;
+  }
+
+  /* PLATFORM */
+  .platform {
+    padding: 7rem 4rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .platform-head {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  .platform-head h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 2.5rem;
+    color: var(--white);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .platform-head .orn {
+    display: block;
+    width: 30px;
+    height: 1px;
+    background: var(--gold);
+    margin: 1.5rem auto 0;
+  }
+
+  .plat-items { list-style: none; }
+  .plat-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(197, 165, 90, 0.1);
+    align-items: baseline;
+  }
+  .plat-item h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+  .plat-item p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+
+  /* RECORD */
+  .record {
+    background: var(--charcoal);
+    padding: 5rem 4rem;
+  }
+  .record-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .record h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 2rem;
+    color: var(--white);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+  .record ul {
+    list-style: none;
+    columns: 2;
+    column-gap: 4rem;
+    text-align: left;
+  }
+  .record li {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.85rem;
+    color: var(--text);
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    break-inside: avoid;
+  }
+  .record li::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border: 1px solid var(--gold);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+  }
+
+  /* CTA */
+  .cta {
+    padding: 10rem 4rem;
+    text-align: center;
+  }
+  .cta h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(3rem, 8vw, 6rem);
+    color: var(--white);
+    letter-spacing: 0.1em;
+    line-height: 1.1;
+  }
+  .cta h2 em {
+    color: var(--gold);
+    font-style: italic;
+  }
+  .cta p {
+    margin-top: 2rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  footer {
+    border-top: 1px solid rgba(197, 165, 90, 0.1);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(197, 165, 90, 0.4);
+  }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.9s, transform 0.9s; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 768px) {
+    .plat-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .record ul { columns: 1; }
+    .topbar, .platform, .record, .cta { padding-left: 2rem; padding-right: 2rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span>Mordecai Mengesteab</span>
+  <span>MMXXVI</span>
+</div>
+
+<section class="hero">
+  <div class="hero-ornament"></div>
+  <h1 class="hero-name">Mordecai</h1>
+  <p class="hero-sub">for Student Senate President</p>
+  <div class="hero-divider"></div>
+  <p class="hero-quote">"I'm not here to rebrand student government. I want to build a Senate that works after I leave it."</p>
+  <a href="#platform" class="hero-vote">Vote March 9 & 10</a>
+</section>
+
+<div class="gold-line"></div>
+
+<section class="platform" id="platform">
+  <div class="platform-head reveal">
+    <h2>Platform</h2>
+    <span class="orn"></span>
+  </div>
+  <ul class="plat-items">
+    <li class="plat-item reveal"><h3>Transparency</h3><p>Searchable public records of Senate actions and where student fees are allocated.</p></li>
+    <li class="plat-item reveal"><h3>Affordability</h3><p>Fighting the costs that squeeze students — tuition, housing, dining, parking.</p></li>
+    <li class="plat-item reveal"><h3>Student Voices</h3><p>A standing legislative roundtable with multicultural organizations, the Pride Center, graduate students, and Greek councils.</p></li>
+    <li class="plat-item reveal"><h3>Follow-Through</h3><p>Infrastructure that ensures passed legislation becomes real outcomes.</p></li>
+    <li class="plat-item reveal"><h3>Campus Safety</h3><p>Sexual assault prevention, survivor advocacy, and mental health access.</p></li>
+    <li class="plat-item reveal"><h3>Digital Senate</h3><p>Modernizing student government's digital infrastructure for the way students actually live.</p></li>
+  </ul>
+</section>
+
+<div class="gold-line"></div>
+
+<section class="record reveal">
+  <div class="record-inner">
+    <h2>Record</h2>
+    <ul>
+      <li>Two sessions as Senator</li>
+      <li>Chair, Strategic Mission Subcommittee</li>
+      <li>Served on DEI, GRO, Rules, Recordkeeping</li>
+      <li>Sponsored the Keep the Promise Act</li>
+      <li>Senate Transparency & Safety Act</li>
+      <li>Student Dining Board Establishment Act</li>
+      <li>Co-authored UNC system DEI report</li>
+      <li>Mandated Senate recordings</li>
+    </ul>
+  </div>
+</section>
+
+<section class="cta reveal">
+  <h2><em>Let's</em> Begin</h2>
+  <p>March 9 & 10, 2026</p>
+</section>
+
+<footer>
+  <span>Mordecai for SSP</span>
+  <span>Let's Begin</span>
+</footer>
+
+<script>
+  const o = new IntersectionObserver(e => e.forEach(x => x.isIntersecting && x.target.classList.add('visible')), {threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el => o.observe(el));
+</script>
+<script src="switcher.js"></script>
+</body>
+</html>

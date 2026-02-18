@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MORDECAI — SSP 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Chakra+Petch:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a12;
+    --neon: #00ffc8;
+    --neon-dim: rgba(0, 255, 200, 0.08);
+    --neon-glow: rgba(0, 255, 200, 0.3);
+    --blue: #0066ff;
+    --text: #c8c8d0;
+    --muted: #555566;
+    --line: #1a1a2e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Chakra Petch', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* SCANLINES */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 200, 0.015) 2px,
+      rgba(0, 255, 200, 0.015) 4px
+    );
+    pointer-events: none;
+    z-index: 9998;
+  }
+
+  /* TOPBAR */
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar .live {
+    color: var(--neon);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .topbar .live::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--neon);
+    box-shadow: 0 0 8px var(--neon);
+    animation: blink 2s infinite;
+  }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Grid bg */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, var(--line) 1px, transparent 1px),
+      linear-gradient(0deg, var(--line) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at 50% 80%, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 80%, black 30%, transparent 70%);
+    opacity: 0.6;
+  }
+
+  .hero-content { position: relative; z-index: 2; }
+
+  .hero-sys {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--neon);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: typeIn 0.8s ease 0.3s forwards;
+  }
+
+  .hero-name {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 800;
+    font-size: clamp(4rem, 12vw, 10rem);
+    line-height: 0.95;
+    text-transform: uppercase;
+    color: var(--text);
+    text-shadow: 0 0 60px var(--neon-glow);
+    opacity: 0;
+    animation: glitchIn 0.6s ease 0.5s forwards;
+  }
+  .hero-name .glow {
+    color: var(--neon);
+    text-shadow: 0 0 30px var(--neon-glow), 0 0 60px var(--neon-glow);
+  }
+
+  .hero-sub {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 1.5rem;
+    opacity: 0;
+    animation: typeIn 0.8s ease 0.8s forwards;
+  }
+
+  .hero-slogan {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    color: var(--neon);
+    margin-top: 3rem;
+    text-shadow: 0 0 20px var(--neon-glow);
+    opacity: 0;
+    animation: typeIn 0.8s ease 1s forwards;
+  }
+
+  .hero-date {
+    margin-top: 2rem;
+    display: inline-block;
+    padding: 0.6rem 1.8rem;
+    border: 1px solid var(--neon);
+    color: var(--neon);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-shadow: 0 0 15px var(--neon-dim), inset 0 0 15px var(--neon-dim);
+    transition: all 0.3s;
+    opacity: 0;
+    animation: typeIn 0.8s ease 1.2s forwards;
+  }
+  .hero-date:hover {
+    background: var(--neon);
+    color: var(--bg);
+    box-shadow: 0 0 30px var(--neon-glow);
+  }
+
+  @keyframes typeIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: none; } }
+  @keyframes glitchIn {
+    0% { opacity: 0; transform: translateX(-30px) skewX(-5deg); }
+    60% { transform: translateX(5px) skewX(1deg); }
+    100% { opacity: 1; transform: none; }
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--neon), transparent);
+    opacity: 0.3;
+  }
+
+  /* QUOTE */
+  .quote-section {
+    padding: 5rem 3rem;
+    text-align: center;
+  }
+  .quote-section blockquote {
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 700px;
+    margin: 0 auto;
+    color: var(--text);
+  }
+  .quote-section .hl { color: var(--neon); text-shadow: 0 0 10px var(--neon-glow); }
+
+  /* PLATFORM */
+  .platform { padding: 5rem 2rem; }
+  .platform h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--neon);
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .plat-list {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .plat-row {
+    display: grid;
+    grid-template-columns: 50px 180px 1fr;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--line);
+    align-items: baseline;
+    transition: background 0.3s;
+  }
+  .plat-row:hover { background: var(--neon-dim); }
+  .plat-row .idx {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.65rem;
+    color: var(--neon);
+    opacity: 0.5;
+  }
+  .plat-row h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .plat-row p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  /* RECORD */
+  .record {
+    padding: 4rem 2rem;
+    border-top: 1px solid var(--line);
+  }
+  .record h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--neon);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .record-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .rec-tag {
+    padding: 0.5rem 1.2rem;
+    border: 1px solid var(--line);
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: var(--muted);
+    transition: all 0.3s;
+  }
+  .rec-tag:hover {
+    border-color: var(--neon);
+    color: var(--neon);
+    box-shadow: 0 0 12px var(--neon-dim);
+  }
+
+  /* CTA */
+  .cta {
+    padding: 8rem 2rem;
+    text-align: center;
+  }
+  .cta h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3rem, 10vw, 7rem);
+    text-transform: uppercase;
+    color: var(--neon);
+    text-shadow: 0 0 40px var(--neon-glow), 0 0 80px var(--neon-dim);
+    line-height: 1;
+  }
+  .cta p {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--muted);
+    margin-top: 1.5rem;
+  }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+  }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s, transform 0.7s; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 768px) {
+    .plat-row { grid-template-columns: 1fr; gap: 0.5rem; }
+    .hero { padding: 3rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span>SYS://student.senate.2026</span>
+  <span class="live">Campaign Active</span>
+</div>
+
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-sys">[SYS] Loading candidate profile...</p>
+    <h1 class="hero-name">MOR<span class="glow">DE</span>CAI</h1>
+    <p class="hero-sub">Student Senate President // NC State</p>
+    <p class="hero-slogan">Let's Begin_</p>
+    <a href="#platform" class="hero-date">Vote: 03.09 + 03.10.2026</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="quote-section reveal">
+  <blockquote>"I'm not here to rebrand student government. I want to build a Senate that <span class="hl">works</span> after I leave it."</blockquote>
+</section>
+
+<div class="divider"></div>
+
+<section class="platform" id="platform">
+  <h2 class="reveal">// Platform Directives</h2>
+  <div class="plat-list">
+    <div class="plat-row reveal"><span class="idx">001</span><h3>Transparency</h3><p>Searchable public records of Senate actions and student fee allocation.</p></div>
+    <div class="plat-row reveal"><span class="idx">002</span><h3>Affordability</h3><p>Fighting costs in tuition, housing, dining, and parking.</p></div>
+    <div class="plat-row reveal"><span class="idx">003</span><h3>Student Voices</h3><p>Standing legislative roundtable — multicultural orgs, Pride Center, grad students.</p></div>
+    <div class="plat-row reveal"><span class="idx">004</span><h3>Follow-Through</h3><p>Infrastructure that turns passed legislation into actual outcomes.</p></div>
+    <div class="plat-row reveal"><span class="idx">005</span><h3>Campus Safety</h3><p>Sexual assault prevention, survivor advocacy, mental health.</p></div>
+    <div class="plat-row reveal"><span class="idx">006</span><h3>Digital Senate</h3><p>Modernizing SG's digital infrastructure for 2026.</p></div>
+  </div>
+</section>
+
+<section class="record reveal">
+  <h2>// Service Record</h2>
+  <div class="record-grid">
+    <span class="rec-tag">Two Sessions as Senator</span>
+    <span class="rec-tag">Chair, Strategic Mission</span>
+    <span class="rec-tag">DEI Committee</span>
+    <span class="rec-tag">GRO Committee</span>
+    <span class="rec-tag">Keep the Promise Act</span>
+    <span class="rec-tag">Transparency & Safety Act</span>
+    <span class="rec-tag">Dining Board Act</span>
+    <span class="rec-tag">UNC System DEI Report</span>
+  </div>
+</section>
+
+<section class="cta reveal">
+  <h2>Let's<br>Begin_</h2>
+  <p>March 9 + 10 // 2026</p>
+</section>
+
+<footer>
+  <span>MORDECAI.SSP.2026</span>
+  <span>END_TRANSMISSION</span>
+</footer>
+
+<script>
+  const o = new IntersectionObserver(e => e.forEach(x => x.isIntersecting && x.target.classList.add('visible')), {threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el => o.observe(el));
+</script>
+<script src="switcher.js"></script>
+</body>
+</html>

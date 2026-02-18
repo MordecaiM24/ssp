@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MORDECAI — Student Senate President</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Raleway:wght@200;300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0d0d0d;
+    --gold: #c9a84c;
+    --gold-bright: #e6c65a;
+    --gold-dim: rgba(201, 168, 76, 0.1);
+    --cream: #f8f3e7;
+    --charcoal: #1a1a1a;
+    --text: #888;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Raleway', sans-serif;
+    background: var(--black);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ART DECO PATTERNS */
+  .deco-border-top, .deco-border-bottom {
+    height: 40px;
+    background:
+      repeating-linear-gradient(90deg,
+        transparent 0, transparent 18px,
+        var(--gold) 18px, var(--gold) 20px
+      );
+    opacity: 0.15;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Deco lines background */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 50%, transparent 30%, var(--black) 70%),
+      repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg, transparent 14deg, rgba(201, 168, 76, 0.03) 14deg, rgba(201, 168, 76, 0.03) 15deg);
+    pointer-events: none;
+  }
+
+  .hero-content { position: relative; z-index: 2; }
+
+  .deco-diamond {
+    width: 12px;
+    height: 12px;
+    border: 1px solid var(--gold);
+    transform: rotate(45deg);
+    margin: 0 auto 2rem;
+    opacity: 0;
+    animation: decoIn 0.8s ease 0.2s forwards;
+  }
+
+  .hero-year {
+    font-family: 'Poiret One', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.5em;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: decoIn 0.8s ease 0.3s forwards;
+  }
+
+  .hero-name {
+    font-family: 'Poiret One', sans-serif;
+    font-size: clamp(4rem, 12vw, 10rem);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    line-height: 1;
+    opacity: 0;
+    animation: decoIn 1s ease 0.5s forwards;
+  }
+
+  .hero-lines {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+    justify-content: center;
+    opacity: 0;
+    animation: decoIn 0.8s ease 0.7s forwards;
+  }
+  .hero-lines .line {
+    width: 80px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .hero-lines .diamond {
+    width: 8px;
+    height: 8px;
+    border: 1px solid var(--gold);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  .hero-sub {
+    font-weight: 200;
+    font-size: 1rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0;
+    animation: decoIn 0.8s ease 0.9s forwards;
+  }
+
+  .hero-slogan {
+    font-family: 'Poiret One', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--cream);
+    margin-top: 3rem;
+    letter-spacing: 0.15em;
+    opacity: 0;
+    animation: decoIn 0.8s ease 1.1s forwards;
+  }
+
+  .hero-vote {
+    display: inline-block;
+    margin-top: 2.5rem;
+    padding: 0.8rem 3rem;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-weight: 300;
+    font-size: 0.75rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.4s;
+    opacity: 0;
+    animation: decoIn 0.8s ease 1.3s forwards;
+  }
+  .hero-vote::before, .hero-vote::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border: 1px solid var(--gold);
+    transform: rotate(45deg);
+    top: 50%;
+    margin-top: -3px;
+  }
+  .hero-vote::before { left: -10px; }
+  .hero-vote::after { right: -10px; }
+  .hero-vote:hover {
+    background: var(--gold);
+    color: var(--black);
+  }
+
+  @keyframes decoIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* QUOTE */
+  .quote {
+    padding: 5rem 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(201, 168, 76, 0.15);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+  }
+  .quote blockquote {
+    font-family: 'Poiret One', sans-serif;
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+    color: var(--cream);
+  }
+  .quote .gold { color: var(--gold); }
+
+  /* PLATFORM */
+  .platform {
+    padding: 6rem 2rem;
+  }
+  .platform h2 {
+    font-family: 'Poiret One', sans-serif;
+    font-size: 2.5rem;
+    letter-spacing: 0.2em;
+    text-align: center;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .platform .sub-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
+  }
+  .platform .sub-line .sl { width: 40px; height: 1px; background: var(--gold); opacity: 0.3; }
+  .platform .sub-line .sd { width: 6px; height: 6px; border: 1px solid var(--gold); transform: rotate(45deg); opacity: 0.3; }
+
+  .plat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    max-width: 1000px;
+    margin: 0 auto;
+    border: 1px solid rgba(201, 168, 76, 0.15);
+  }
+  .plat-cell {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid rgba(201, 168, 76, 0.15);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+    text-align: center;
+    transition: background 0.3s;
+  }
+  .plat-cell:nth-child(3n) { border-right: none; }
+  .plat-cell:nth-child(n+4) { border-bottom: none; }
+  .plat-cell:hover { background: var(--gold-dim); }
+
+  .plat-cell h3 {
+    font-family: 'Poiret One', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+  .plat-cell p {
+    font-size: 0.82rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text);
+  }
+
+  /* RECORD */
+  .record {
+    padding: 5rem 2rem;
+    background: var(--charcoal);
+  }
+  .record-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .record h2 {
+    font-family: 'Poiret One', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 2.5rem;
+  }
+  .record ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(201, 168, 76, 0.1);
+  }
+  .record li {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+    border-right: 1px solid rgba(201, 168, 76, 0.1);
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .record li:nth-child(2n) { border-right: none; }
+  .record li::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border: 1px solid var(--gold);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  /* CTA */
+  .cta {
+    padding: 8rem 2rem;
+    text-align: center;
+  }
+  .cta h2 {
+    font-family: 'Poiret One', sans-serif;
+    font-size: clamp(3rem, 9vw, 7rem);
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    line-height: 1.1;
+  }
+  .cta p {
+    margin-top: 2rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.4em;
+    color: var(--text);
+    text-transform: uppercase;
+  }
+
+  footer {
+    border-top: 1px solid rgba(201, 168, 76, 0.1);
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: rgba(201, 168, 76, 0.3);
+    text-transform: uppercase;
+  }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s, transform 0.8s; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 768px) {
+    .plat-grid { grid-template-columns: 1fr; }
+    .plat-cell { border-right: none !important; border-bottom: 1px solid rgba(201, 168, 76, 0.15) !important; }
+    .record ul { grid-template-columns: 1fr; }
+    .record li { border-right: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deco-border-top"></div>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="deco-diamond"></div>
+    <p class="hero-year">2 0 2 6</p>
+    <h1 class="hero-name">Mordecai</h1>
+    <div class="hero-lines">
+      <span class="line"></span>
+      <span class="diamond"></span>
+      <span class="line"></span>
+    </div>
+    <p class="hero-sub">Student Senate President</p>
+    <p class="hero-slogan">Let's Begin</p>
+    <a href="#platform" class="hero-vote">Vote March 9 & 10</a>
+  </div>
+</section>
+
+<section class="quote reveal">
+  <blockquote>"I want to build a Senate that <span class="gold">works</span> after I leave it."</blockquote>
+</section>
+
+<section class="platform" id="platform">
+  <h2 class="reveal">Platform</h2>
+  <div class="sub-line reveal"><span class="sl"></span><span class="sd"></span><span class="sl"></span></div>
+  <div class="plat-grid">
+    <div class="plat-cell reveal"><h3>Transparency</h3><p>Searchable public records of Senate actions and student fee allocation.</p></div>
+    <div class="plat-cell reveal"><h3>Affordability</h3><p>Fighting costs in tuition, housing, dining, and parking.</p></div>
+    <div class="plat-cell reveal"><h3>Student Voices</h3><p>Legislative roundtable with multicultural orgs, Pride Center, grad students.</p></div>
+    <div class="plat-cell reveal"><h3>Follow-Through</h3><p>Turning passed legislation into actual outcomes.</p></div>
+    <div class="plat-cell reveal"><h3>Campus Safety</h3><p>Sexual assault prevention, survivor advocacy, and mental health.</p></div>
+    <div class="plat-cell reveal"><h3>Digital Senate</h3><p>Modernizing SG's digital infrastructure for 2026.</p></div>
+  </div>
+</section>
+
+<section class="record reveal">
+  <div class="record-inner">
+    <h2>Record</h2>
+    <ul>
+      <li>Two sessions as Senator</li>
+      <li>Chair, Strategic Mission</li>
+      <li>DEI, GRO, Rules, Recordkeeping</li>
+      <li>Keep the Promise Act</li>
+      <li>Transparency & Safety Act</li>
+      <li>Dining Board Act</li>
+      <li>UNC System DEI Report</li>
+      <li>Mandated Senate Recordings</li>
+    </ul>
+  </div>
+</section>
+
+<section class="cta reveal">
+  <h2>Let's Begin</h2>
+  <p>March 9 & 10, 2026</p>
+</section>
+
+<footer>
+  <span>Mordecai for SSP</span>
+  <span>Let's Begin</span>
+</footer>
+
+<div class="deco-border-bottom"></div>
+
+<script>
+  const o = new IntersectionObserver(e => e.forEach(x => x.isIntersecting && x.target.classList.add('visible')), {threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el => o.observe(el));
+</script>
+<script src="switcher.js"></script>
+</body>
+</html>

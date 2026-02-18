@@ -356,51 +356,6 @@
 </head>
 <body>
 
-<!-- STYLE SWITCHER -->
-<nav class="switcher">
-  <span class="switcher-label">Style:</span>
-  <a href="index.html" class="switcher-link">Sign</a>
-  <a href="site-option-b-editorial.html" class="switcher-link">Editorial</a>
-  <a href="site-option-c-brutalist.html" class="switcher-link active">Brutalist</a>
-</nav>
-<style>
-  .switcher {
-    position: fixed;
-    top: 1.2rem;
-    right: 1.5rem;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: rgba(10, 10, 10, 0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    padding: 0.5rem 1rem;
-    border-radius: 100px;
-    border: 1px solid rgba(255, 59, 48, 0.4);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-  .switcher-label {
-    color: rgba(255,255,255,0.4);
-    font-weight: 400;
-  }
-  .switcher-link {
-    color: rgba(255,255,255,0.6);
-    text-decoration: none;
-    padding: 0.25rem 0.6rem;
-    border-radius: 100px;
-    transition: all 0.2s;
-  }
-  .switcher-link:hover { color: #fff; }
-  .switcher-link.active {
-    background: var(--hot, #ff3b30);
-    color: var(--black, #0a0a0a);
-    font-weight: 600;
-  }
-</style>
 
 <!-- TICKER -->
 <div class="ticker">
@@ -521,5 +476,6 @@
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
+<script src="switcher.js"></script>
 </body>
 </html>

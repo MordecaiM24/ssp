@@ -378,51 +378,6 @@
 </head>
 <body>
 
-<!-- STYLE SWITCHER -->
-<nav class="switcher">
-  <span class="switcher-label">Style:</span>
-  <a href="index.html" class="switcher-link">Sign</a>
-  <a href="site-option-b-editorial.html" class="switcher-link active">Editorial</a>
-  <a href="site-option-c-brutalist.html" class="switcher-link">Brutalist</a>
-</nav>
-<style>
-  .switcher {
-    position: fixed;
-    top: 1.2rem;
-    right: 1.5rem;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: rgba(13, 13, 13, 0.88);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    padding: 0.5rem 1rem;
-    border-radius: 100px;
-    border: 1px solid rgba(192, 57, 43, 0.3);
-    font-family: 'DM Sans', system-ui, sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-  .switcher-label {
-    color: rgba(255,255,255,0.4);
-    font-weight: 400;
-  }
-  .switcher-link {
-    color: rgba(255,255,255,0.6);
-    text-decoration: none;
-    padding: 0.25rem 0.6rem;
-    border-radius: 100px;
-    transition: all 0.2s;
-  }
-  .switcher-link:hover { color: #fff; }
-  .switcher-link.active {
-    background: var(--red, #c0392b);
-    color: #fff;
-    font-weight: 600;
-  }
-</style>
 
 <div class="topbar">
   <span>Mordecai Mengesteab</span>
@@ -531,5 +486,6 @@
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
+<script src="switcher.js"></script>
 </body>
 </html>

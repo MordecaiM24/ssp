@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mordecai for Student Senate President</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,500;0,700;0,900;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #1a3a2a;
+    --sage: #7a9e7e;
+    --cream: #f5f0e6;
+    --warm: #e8dcc8;
+    --earth: #8b7355;
+    --bark: #3d2b1f;
+    --moss: #4a6741;
+    --sun: #d4a855;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--cream);
+    color: var(--bark);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 3rem 2rem;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--cream) 0%, var(--warm) 100%);
+  }
+
+  /* Organic shapes */
+  .organic {
+    position: absolute;
+    border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%;
+    opacity: 0.08;
+    animation: morph 12s ease-in-out infinite alternate;
+  }
+  .organic-1 { width: 600px; height: 500px; background: var(--sage); top: -15%; right: -10%; animation-delay: 0s; }
+  .organic-2 { width: 400px; height: 450px; background: var(--moss); bottom: -10%; left: -8%; animation-delay: -4s; }
+  .organic-3 { width: 300px; height: 300px; background: var(--sun); top: 40%; left: 60%; animation-delay: -7s; }
+  @keyframes morph {
+    0% { border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%; transform: rotate(0deg); }
+    100% { border-radius: 40% 60% 45% 55% / 55% 40% 60% 45%; transform: rotate(10deg); }
+  }
+
+  .hero-content { position: relative; z-index: 2; }
+
+  .hero-leaf {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: growIn 1s ease 0.2s forwards;
+  }
+
+  .hero-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: clamp(4rem, 11vw, 9rem);
+    line-height: 0.9;
+    color: var(--forest);
+    letter-spacing: -0.03em;
+    opacity: 0;
+    animation: growIn 1s ease 0.4s forwards;
+  }
+
+  .hero-sub {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    color: var(--sage);
+    margin-top: 0.8rem;
+    opacity: 0;
+    animation: growIn 1s ease 0.6s forwards;
+  }
+
+  .hero-line {
+    width: 80px;
+    height: 2px;
+    background: var(--sage);
+    margin: 2.5rem auto;
+    opacity: 0;
+    animation: growIn 1s ease 0.7s forwards;
+  }
+
+  .hero-quote {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 500px;
+    color: var(--earth);
+    opacity: 0;
+    animation: growIn 1s ease 0.8s forwards;
+  }
+
+  .hero-btn {
+    display: inline-block;
+    margin-top: 2.5rem;
+    padding: 0.9rem 2.5rem;
+    background: var(--forest);
+    color: var(--cream);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border-radius: 100px;
+    transition: all 0.3s;
+    opacity: 0;
+    animation: growIn 1s ease 1s forwards;
+  }
+  .hero-btn:hover {
+    background: var(--moss);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(74, 103, 65, 0.2);
+  }
+
+  @keyframes growIn {
+    from { opacity: 0; transform: translateY(15px) scale(0.97); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* PLATFORM */
+  .platform {
+    padding: 6rem 2rem;
+    background: var(--forest);
+    color: var(--cream);
+    position: relative;
+  }
+  .platform::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: var(--cream);
+    border-radius: 0 0 50% 50%;
+  }
+
+  .platform h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--sun);
+  }
+
+  .plat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .plat-card {
+    padding: 2rem;
+    background: rgba(255,255,255,0.06);
+    border-radius: 16px;
+    border: 1px solid rgba(122, 158, 126, 0.2);
+    transition: all 0.3s;
+  }
+  .plat-card:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-4px);
+  }
+  .plat-card h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.15rem;
+    color: var(--sun);
+    margin-bottom: 0.5rem;
+  }
+  .plat-card p {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: rgba(245, 240, 230, 0.65);
+  }
+
+  /* RECORD */
+  .record {
+    padding: 5rem 2rem;
+    background: var(--warm);
+  }
+  .record-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .record h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 2rem;
+    color: var(--forest);
+    margin-bottom: 2rem;
+  }
+  .record-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.7rem;
+  }
+  .r-pill {
+    padding: 0.6rem 1.3rem;
+    background: var(--cream);
+    border-radius: 100px;
+    font-size: 0.82rem;
+    color: var(--earth);
+    transition: all 0.3s;
+    border: 1px solid transparent;
+  }
+  .r-pill:hover {
+    border-color: var(--sage);
+    background: white;
+    transform: translateY(-2px);
+  }
+
+  /* CTA */
+  .cta {
+    padding: 8rem 2rem;
+    text-align: center;
+    background: var(--cream);
+    position: relative;
+  }
+  .cta h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: clamp(3rem, 9vw, 6rem);
+    color: var(--forest);
+    line-height: 1;
+  }
+  .cta h2 em {
+    font-weight: 300;
+    color: var(--sage);
+  }
+  .cta p {
+    margin-top: 1.5rem;
+    color: var(--earth);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+  }
+
+  footer {
+    padding: 2rem;
+    text-align: center;
+    background: var(--forest);
+    color: var(--sage);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+  }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s, transform 0.8s; }
+  .reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+<section class="hero">
+  <div class="organic organic-1"></div>
+  <div class="organic organic-2"></div>
+  <div class="organic organic-3"></div>
+  <div class="hero-content">
+    <div class="hero-leaf">&#127793;</div>
+    <h1 class="hero-name">Mordecai</h1>
+    <p class="hero-sub">for Student Senate President</p>
+    <div class="hero-line"></div>
+    <p class="hero-quote">"I want to build a Senate that works after I leave it."</p>
+    <a href="#platform" class="hero-btn">Vote March 9 & 10</a>
+  </div>
+</section>
+
+<section class="platform" id="platform">
+  <h2 class="reveal">The Platform</h2>
+  <div class="plat-grid">
+    <div class="plat-card reveal"><h3>Transparency</h3><p>Searchable public records of Senate actions and student fee allocation.</p></div>
+    <div class="plat-card reveal"><h3>Affordability</h3><p>Fighting costs in tuition, housing, dining, and parking.</p></div>
+    <div class="plat-card reveal"><h3>Student Voices</h3><p>Legislative roundtable with multicultural orgs, Pride Center, grad students.</p></div>
+    <div class="plat-card reveal"><h3>Follow-Through</h3><p>Infrastructure that turns passed legislation into actual outcomes.</p></div>
+    <div class="plat-card reveal"><h3>Campus Safety</h3><p>Sexual assault prevention, survivor advocacy, mental health.</p></div>
+    <div class="plat-card reveal"><h3>Digital Senate</h3><p>Modernizing SG's digital infrastructure for how students live.</p></div>
+  </div>
+</section>
+
+<section class="record reveal">
+  <div class="record-inner">
+    <h2>The Record</h2>
+    <div class="record-pills">
+      <span class="r-pill">Two Sessions as Senator</span>
+      <span class="r-pill">Chair, Strategic Mission</span>
+      <span class="r-pill">DEI Committee</span>
+      <span class="r-pill">GRO Committee</span>
+      <span class="r-pill">Keep the Promise Act</span>
+      <span class="r-pill">Transparency & Safety Act</span>
+      <span class="r-pill">Dining Board Act</span>
+      <span class="r-pill">UNC System DEI Report</span>
+    </div>
+  </div>
+</section>
+
+<section class="cta reveal">
+  <h2><em>Let's</em> Begin</h2>
+  <p>March 9 & 10, 2026</p>
+</section>
+
+<footer>Mordecai for SSP &bull; 2026</footer>
+
+<script>
+  const o = new IntersectionObserver(e => e.forEach(x => x.isIntersecting && x.target.classList.add('visible')), {threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el => o.observe(el));
+</script>
+<script src="switcher.js"></script>
+</body>
+</html>

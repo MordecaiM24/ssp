@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mordecai — SSP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Geist Mono', monospace;
+    background: #fefefe;
+    color: #111;
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  .page {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 8vh 2rem 6rem;
+  }
+
+  .hero-name {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(4rem, 12vw, 7rem);
+    font-weight: 400;
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    margin-bottom: 0.3em;
+    opacity: 0;
+    animation: minIn 1s ease 0.2s forwards;
+  }
+
+  .hero-sub {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: #999;
+    margin-bottom: 4rem;
+    opacity: 0;
+    animation: minIn 1s ease 0.5s forwards;
+  }
+
+  .line {
+    width: 100%;
+    height: 1px;
+    background: #e0e0e0;
+    margin: 3rem 0;
+  }
+
+  .quote {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 1.6rem;
+    line-height: 1.55;
+    color: #333;
+    margin: 3rem 0;
+    opacity: 0;
+    animation: minIn 1s ease 0.7s forwards;
+  }
+
+  section { margin: 4rem 0; }
+
+  h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .platform-item {
+    padding: 1.2rem 0;
+    border-bottom: 1px solid #eee;
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 1rem;
+    align-items: baseline;
+  }
+  .platform-item .n {
+    color: #ccc;
+    font-size: 0.7rem;
+  }
+  .platform-item h3 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 0.3rem;
+  }
+  .platform-item p {
+    color: #777;
+    line-height: 1.6;
+    font-size: 0.82rem;
+  }
+
+  .record-list {
+    list-style: none;
+  }
+  .record-list li {
+    padding: 0.7rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    color: #555;
+    font-size: 0.82rem;
+  }
+
+  .cta {
+    margin-top: 6rem;
+    text-align: center;
+  }
+  .cta h2 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    letter-spacing: -0.03em;
+    color: #111;
+  }
+  .cta p {
+    color: #999;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    margin-top: 1rem;
+  }
+
+  .reveal { opacity: 0; transform: translateY(12px); transition: opacity 0.8s, transform 0.8s; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @keyframes minIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="hero-name">Mordecai</h1>
+  <p class="hero-sub">For Student Senate President — Vote 3/9 & 3/10</p>
+  <div class="line"></div>
+  <p class="quote">"I'm not here to rebrand student government. I want to build a Senate that works after I leave it."</p>
+  <div class="line"></div>
+
+  <section class="reveal">
+    <h2>Platform</h2>
+    <div class="platform-item"><span class="n">01</span><div><h3>Transparency</h3><p>Searchable public records of Senate actions and student fee allocation.</p></div></div>
+    <div class="platform-item"><span class="n">02</span><div><h3>Affordability</h3><p>Fighting costs in tuition, housing, dining, and parking.</p></div></div>
+    <div class="platform-item"><span class="n">03</span><div><h3>Student Voices</h3><p>Standing legislative roundtable with multicultural orgs, Pride Center, grad students, Greek councils.</p></div></div>
+    <div class="platform-item"><span class="n">04</span><div><h3>Follow-Through</h3><p>Infrastructure that turns passed legislation into real outcomes.</p></div></div>
+    <div class="platform-item"><span class="n">05</span><div><h3>Campus Safety</h3><p>Sexual assault prevention, survivor advocacy, mental health.</p></div></div>
+    <div class="platform-item"><span class="n">06</span><div><h3>Digital Senate</h3><p>Modernizing student government's digital infrastructure.</p></div></div>
+  </section>
+
+  <div class="line"></div>
+
+  <section class="reveal">
+    <h2>Record</h2>
+    <ul class="record-list">
+      <li>Two sessions as Senator</li>
+      <li>Chair, Strategic Mission Subcommittee</li>
+      <li>Served on DEI, GRO, Rules, Recordkeeping</li>
+      <li>Sponsored the Keep the Promise Act</li>
+      <li>Senate Transparency & Safety Act</li>
+      <li>Student Dining Board Establishment Act</li>
+      <li>Co-authored UNC system DEI report</li>
+      <li>Mandated Senate recordings with privacy protections</li>
+    </ul>
+  </section>
+
+  <div class="cta reveal">
+    <h2>Let's begin.</h2>
+    <p>March 9 & 10, 2026</p>
+  </div>
+</div>
+<script>
+  const o = new IntersectionObserver(e => e.forEach(x => x.isIntersecting && x.target.classList.add('visible')), {threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el => o.observe(el));
+</script>
+<script src="switcher.js"></script>
+</body>
+</html>
