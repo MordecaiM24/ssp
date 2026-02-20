@@ -1,9 +1,9 @@
 // Style Switcher — auto-injected nav for all campaign site variants
 (function () {
   const options = [
-    { label: "Sign", file: "index.html" },
+    { label: "Brutalist", file: "index.html" },
+    { label: "Sign", file: "site-option-a-sign.html" },
     { label: "Editorial", file: "site-option-b-editorial.html" },
-    { label: "Brutalist", file: "site-option-c-brutalist.html" },
     { label: "Industrial", file: "site-option-l-industrial.html" },
     { label: "Minimal", file: "site-option-d-minimal.html" },
     { label: "Maximalist", file: "site-option-e-maximalist.html" },
@@ -32,8 +32,7 @@
     a.textContent = opt.label;
     const isActive =
       currentFile === opt.file ||
-      (currentFile === "index.html" && opt.file === "index.html") ||
-      (currentFile === "site-option-a-sign.html" && opt.file === "index.html");
+      (currentFile === "site-option-c-brutalist.html" && opt.file === "index.html");
     if (isActive) {
       a.classList.add("active");
       currentLabel.textContent = opt.label;
